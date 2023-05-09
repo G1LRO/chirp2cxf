@@ -2,9 +2,31 @@ import csv
 import sys
 
 
+#chirpfile = sys.argv[1]
+#cxffile = sys.argv[2]
+
+chirpfile = 'chirp.csv'
+cxffile = 'que.cxf'
 
 
-#chirpcsvfile = sys.argv[1]
+if "csv" in chirpfile:
+    print (chirpfile, 'opened for reading')
+else:
+    print (chirpfile,"is not a .csv file")
+    sys.exit()
+
+    
+if "cxf" in cxffile:
+    print (cxffile, 'opened for reading')
+else:
+    print (cxffile,"is not a .cxf file")
+    sys.exit()
+
+
+targetfile = "processed_"+cxffile
+
+
+print ('Output will be written to',targetfile)
 
 #ctcss data
 ctcss_tones = [
@@ -24,9 +46,9 @@ AnaRxCTCIndex=0
 
 #copy top parf of CXF file to the new file
 
-with open('que.cxf', 'r') as input_file:
+with open(cxffile, 'r') as input_file:
     # open the output file for writing
-    with open('newque.cxf', 'w') as output_file:
+    with open(targetfile, 'w') as output_file:
         # read each line from the input file
         for line in input_file:
             # write the line to the output file
@@ -38,10 +60,10 @@ with open('que.cxf', 'r') as input_file:
 
 
 
-
+print ("First part of cxf file written")
 
 # Open the CSV file
-with open('chirp.csv', mode='r') as csv_file:
+with open(chirpfile, mode='r') as csv_file:
     
     # Create a CSV reader object
     csv_reader = csv.DictReader(csv_file)
@@ -136,27 +158,27 @@ with open('chirp.csv', mode='r') as csv_file:
 
         #Lets print the XML
         
-        print ('    <Channel Name=\"'+Name+'\" chanIndex=\"'+str(chanIndex)+'\">')
-        print ('      <BandWidth>'+str(Bandwidth)+'</BandWidth>')
-        print ('      <TxFreq>'+str(TxFreq)+'</TxFreq>')
-        print ('      <RxFreq>'+str(RxFreq)+'</RxFreq>')
-        print ('      <TxPowerLevel>'+str(TxPowerLevel)+'</TxPowerLevel>')
-        print ('      <AnaTxCTCFlag>'+str(AnaTxCTCFlag)+'</AnaTxCTCFlag>')
-        print ('      <AnaRxCTCFlag>'+str(AnaRxCTCFlag)+'</AnaRxCTCFlag>')
-        print ('      <AnaTxCTCIndex>'+str(AnaTxCTCIndex)+'</AnaTxCTCIndex>')
-        print ('      <AnaRxCTCIndex>'+str(AnaRxCTCIndex)+'</AnaRxCTCIndex>')
-        print ('      <FreqStep>2</FreqStep>')
-        print ('      <FreqReverseFlag>0</FreqReverseFlag>')
-        print ('      <EncryptFlag>0</EncryptFlag>')
-        print ('      <BusyNoTx>0</BusyNoTx>')
-        print ('      <PTTIdFlag>0</PTTIdFlag>')
-        print ('      <DTMFDecode>0</DTMFDecode>')
-        print ('      <AMChanFlag>0</AMChanFlag>')
-        print ('    </Channel>')
+        #print ('    <Channel Name=\"'+Name+'\" chanIndex=\"'+str(chanIndex)+'\">')
+        #print ('      <BandWidth>'+str(Bandwidth)+'</BandWidth>')
+        #print ('      <TxFreq>'+str(TxFreq)+'</TxFreq>')
+        #print ('      <RxFreq>'+str(RxFreq)+'</RxFreq>')
+        #print ('      <TxPowerLevel>'+str(TxPowerLevel)+'</TxPowerLevel>')
+        #print ('      <AnaTxCTCFlag>'+str(AnaTxCTCFlag)+'</AnaTxCTCFlag>')
+        #print ('      <AnaRxCTCFlag>'+str(AnaRxCTCFlag)+'</AnaRxCTCFlag>')
+        #print ('      <AnaTxCTCIndex>'+str(AnaTxCTCIndex)+'</AnaTxCTCIndex>')
+        #print ('      <AnaRxCTCIndex>'+str(AnaRxCTCIndex)+'</AnaRxCTCIndex>')
+        #print ('      <FreqStep>2</FreqStep>')
+        #print ('      <FreqReverseFlag>0</FreqReverseFlag>')
+        #print ('      <EncryptFlag>0</EncryptFlag>')
+        #print ('      <BusyNoTx>0</BusyNoTx>')
+        #print ('      <PTTIdFlag>0</PTTIdFlag>')
+        #print ('      <DTMFDecode>0</DTMFDecode>')
+        #print ('      <AMChanFlag>0</AMChanFlag>')
+        #print ('    </Channel>')
 
 
 
-        with open('newque.cxf', 'a') as output_file:
+        with open(targetfile, 'a') as output_file:
             output_file.write ('    <Channel Name=\"'+Name+'\" chanIndex=\"'+str(chanIndex)+'\">\n')
             output_file.write ('      <BandWidth>'+str(Bandwidth)+'</BandWidth>\n')
             output_file.write ('      <TxFreq>'+str(TxFreq)+'</TxFreq>\n')
@@ -174,4 +196,28 @@ with open('chirp.csv', mode='r') as csv_file:
             output_file.write ('      <DTMFDecode>0</DTMFDecode>\n')
             output_file.write ('      <AMChanFlag>0</AMChanFlag>\n')
             output_file.write ('    </Channel>\n')
-        
+
+        print ("Channel",chanIndex,"converted")
+
+# Open the input file again
+with open(cxffile, 'r') as infile:
+    # Read all the lines into a list
+    lines = infile.readlines()
+
+# Open the output file for appending
+with open(targetfile, 'a') as outfile:
+    # Initialize a flag variable to False
+    found_keyword = False
+
+    # Loop through the lines and write them to the output file
+    for line in lines:
+        # Check if the line contains the keyword
+        if '</Channels_MR>' in line:
+            # Set the flag variable to True to start copying lines
+            found_keyword = True
+
+        # If the flag variable is True, write the line to the output file
+        if found_keyword:
+            outfile.write(line)
+print ("End of xcf file written")
+print ("'73 from G1LRO")
