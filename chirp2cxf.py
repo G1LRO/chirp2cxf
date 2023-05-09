@@ -22,9 +22,13 @@ with open('chirp.csv', mode='r') as csv_file:
         DtcsPolarity = row['DtcsPolarity']
         RxDtcsCode = row['RxDtcsCode']
         CrossMode = row['CrossMode']
+        
+        #Start field translation  
+        
+        #Calculate Transmit from Recieve and Offset
+        Transmit = float(Frequency) + float(Offset)
         if Duplex == "-":
             Transmit = float(Frequency) - float(Offset)
-        Transmit = float(Frequency) + float(Offset)
         Transmit = round(Transmit,6)
 
 
