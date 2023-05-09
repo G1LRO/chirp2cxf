@@ -1,5 +1,5 @@
 # chirp2cxf
-A utility to convert from CHIRP CSV export files to the CXF file format used by the Quansheng radio CPS
+A utility to convert from CHIRP CSV export files to the CXF file format used by the Quansheng UV-K5 radio CPS
 
 Only CTCSS translation is implemented, i'm happy for someone that can test DCS to help, I don't use it.
 
