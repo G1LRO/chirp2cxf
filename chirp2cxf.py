@@ -19,6 +19,27 @@ ctcss_tones = [
 AnaTxCTCIndex=0
 AnaRxCTCIndex=0
 
+
+
+
+#copy top parf of CXF file to the new file
+
+with open('que.cxf', 'r') as input_file:
+    # open the output file for writing
+    with open('newque.cxf', 'w') as output_file:
+        # read each line from the input file
+        for line in input_file:
+            # write the line to the output file
+            output_file.write(line)
+            # check if the line contains the target word
+            if '<Channels_MR>' in line:
+                # if so, stop reading and writing
+                break
+
+
+
+
+
 # Open the CSV file
 with open('chirp.csv', mode='r') as csv_file:
     
@@ -132,4 +153,25 @@ with open('chirp.csv', mode='r') as csv_file:
         print ('      <DTMFDecode>0</DTMFDecode>')
         print ('      <AMChanFlag>0</AMChanFlag>')
         print ('    </Channel>')
+
+
+
+        with open('newque.cxf', 'a') as output_file:
+            output_file.write ('    <Channel Name=\"'+Name+'\" chanIndex=\"'+str(chanIndex)+'\">\n')
+            output_file.write ('      <BandWidth>'+str(Bandwidth)+'</BandWidth>\n')
+            output_file.write ('      <TxFreq>'+str(TxFreq)+'</TxFreq>\n')
+            output_file.write ('      <RxFreq>'+str(RxFreq)+'</RxFreq>\n')
+            output_file.write ('      <TxPowerLevel>'+str(TxPowerLevel)+'</TxPowerLevel>\n')
+            output_file.write ('      <AnaTxCTCFlag>'+str(AnaTxCTCFlag)+'</AnaTxCTCFlag>\n')
+            output_file.write ('      <AnaRxCTCFlag>'+str(AnaRxCTCFlag)+'</AnaRxCTCFlag>\n')
+            output_file.write ('      <AnaTxCTCIndex>'+str(AnaTxCTCIndex)+'</AnaTxCTCIndex>\n')
+            output_file.write ('      <AnaRxCTCIndex>'+str(AnaRxCTCIndex)+'</AnaRxCTCIndex>\n')
+            output_file.write ('      <FreqStep>2</FreqStep>\n')
+            output_file.write ('      <FreqReverseFlag>0</FreqReverseFlag>\n')
+            output_file.write ('      <EncryptFlag>0</EncryptFlag>\n')
+            output_file.write ('      <BusyNoTx>0</BusyNoTx>\n')
+            output_file.write ('      <PTTIdFlag>0</PTTIdFlag>\n')
+            output_file.write ('      <DTMFDecode>0</DTMFDecode>\n')
+            output_file.write ('      <AMChanFlag>0</AMChanFlag>\n')
+            output_file.write ('    </Channel>\n')
         
