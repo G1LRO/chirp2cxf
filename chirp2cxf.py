@@ -2,11 +2,17 @@ import csv
 import sys
 
 
-#chirpfile = sys.argv[1]
-#cxffile = sys.argv[2]
+try:
+    chirpfile = sys.argv[1]
+    cxffile = sys.argv[2]
 
-chirpfile = 'chirp.csv'
-cxffile = 'que.cxf'
+except IndexError:
+    # Handle missing arguments
+    print("Usage: chirp2cxf.exe chirpfile.csv quanshengfile.cxf")
+    sys.exit(1)    
+
+#chirpfile = 'chirp.csv'
+#cxffile = 'que.cxf'
 
 
 if "csv" in chirpfile:
@@ -95,7 +101,7 @@ with open(chirpfile, mode='r') as csv_file:
         if float(Location)>200:
             break
         chanIndex=Location
-
+        
 
         #Name goes into <Name>
         Name = Name[:10]
@@ -219,5 +225,5 @@ with open(targetfile, 'a') as outfile:
         # If the flag variable is True, write the line to the output file
         if found_keyword:
             outfile.write(line)
-print ("End of xcf file written")
+print ("End of xcf file written to processed_"+cxffile )
 print ("'73 from G1LRO")
