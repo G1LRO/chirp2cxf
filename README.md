@@ -1,18 +1,26 @@
 # chirp2cxf
-A utility to convert from CHIRP CSV export files to the CXF file format used by the Quansheng radio CPS
+A utility to convert from CHIRP CSV export files to the CXF file format used by the Quansheng UV-K5 radio CPS
+
+Only CTCSS translation is implemented, i'm happy for someone that can test DCS to help, I don't use it.
 
 With this utility you can create a backup file for the Quansheng "Portable Radio CPS" program.
 
 The input files will be a generic 'donor' save file from the Quansheng CPS, and a CSV export from CHIRP
 
-The Chirp export CSV only contains the channel informaiton.
+ Be careful to use the "File->Export as CSV" option and not the entire Chirp save file for your radio.The Chirp export CSV only contains the channel information.
 
 The input CXF file will contain everything else you need to configure your Quansheng UV-K5 such as radio settings, dtmf things etc.
 
 This utility inserts the CHIRP CSV information into your donor CXF file and provides a result file with the CHIRP channels included. Take this file and load into the Quansheng CPS to program your radio.
 
+If you have Python 3 installed the command can be run as:
+
+"python chirp2cxf.py chirpfile.csv quanshengfile.cxf"
+
 A compiled exe file is available, unzip the folder in one directory and run chirp2cxf.exe with the following parameters:
 
-chirp2cxf.exe chirpfile.csv quanshengfile.cxf
+"chirp2cxf.exe chirpfile.csv quanshengfile.cxf"
 
 The result is written to a new file.
+
+09/05/23: this file is new and untested. Testing and refinement assistance is most welcome
