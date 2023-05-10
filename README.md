@@ -13,9 +13,13 @@ The input CXF file will contain everything else you need to configure your Quans
 
 This utility inserts the CHIRP CSV information into your donor CXF file and provides a result file with the CHIRP channels included. Take this file and load into the Quansheng CPS to program your radio.
 
+If you have Python 3 installed the command can be run as:
+
+"python chirp2cxf.py chirpfile.csv quanshengfile.cxf"
+
 A compiled exe file is available, unzip the folder in one directory and run chirp2cxf.exe with the following parameters:
 
-chirp2cxf.exe chirpfile.csv quanshengfile.cxf
+"chirp2cxf.exe chirpfile.csv quanshengfile.cxf"
 
 The result is written to a new file.
 
