@@ -17,7 +17,7 @@
 import csv
 import sys
 
-
+# use command line arguements for source files
 try:
     chirpfile = sys.argv[1]
     cxffile = sys.argv[2]
@@ -27,8 +27,8 @@ except IndexError:
     print("Usage: chirp2cxf.exe chirpfile.csv quanshengfile.cxf")
     sys.exit(1)    
 
-
-#chirpfile = 'chirp.csv'
+# add your own files here for debug testing and comment the command line argument section above
+#chirpfile = 'chirp.csv' 
 #cxffile = 'que.cxf'
 
 
