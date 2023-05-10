@@ -21,6 +21,6 @@ A compiled exe file is available, unzip the folder in one directory and run chir
 
 "chirp2cxf.exe chirpfile.csv quanshengfile.cxf"
 
-The result is written to a new file.
+The result Quansheng CPS file is written to a new file.
 
 09/05/23: this file is new and untested. Testing and refinement assistance is most welcome
