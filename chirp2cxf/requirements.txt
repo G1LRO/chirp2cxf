@@ -1,0 +1,4 @@
+loguru
+argparse
+pyqt5
+pyinstaller
