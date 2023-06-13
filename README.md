@@ -23,7 +23,7 @@ Feel free to fork it or contact me if you want at: <om0wt@omradio.sk>
 The program can be invocated from command line, staying in chirp2cxf directory:
 
 ```bash
-./src/chirp2cxf.py -chirpfile ldp_pmr.csv -cxffile 20230420_OM0WT_OM.cxf -targetfile translated_OM0WT.cxf
+./chirp2cxf/chirp2cxf.py -chirpfile ldp_pmr.csv -cxffile 20230420_OM0WT_OM.cxf -targetfile translated_OM0WT.cxf
 ```
 
 Processing messages are written on the console:
