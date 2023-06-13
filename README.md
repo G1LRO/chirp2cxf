@@ -67,3 +67,11 @@ Successfully installed PyQt5-Qt5-5.15.2 PyQt5-sip-12.12.1 argparse-1.4.0 loguru-
 [notice] To update, run: pip install --upgrade pip
 (venv) ➜  chirp2cxf git:(main) ✗
 ```
+
+## Pyinstaller
+
+Create a macos .app:
+
+```bash
+pyinstaller chirp2cxf/chirp2cxf.py -n chirp2cxf --windowed --noconfirm --clean
+```
