@@ -210,8 +210,18 @@ class CXF_Convert():
                 Bandwidth = 0 #default to 25khz
                 if Mode == "NFM":
                     Bandwidth = 1
-
-
+                    
+                #calculate the <AMChanFlag>
+                AMChanFlag = 0 #default AM is off
+                if Mode == "AM":
+                    AMChanFlag = 1
+                    
+                #calculate to <FreqStep>
+                FreqStep = 2 #default 6,25kHz
+                if TStep == "12.50": #FreqStep 12.5kHz
+                    FreqStep = 4
+                if TStep == "25.00": #FreqStep 25kHz
+                    FreqStep = 5
 
                 #Lets print the XML
 
@@ -243,13 +253,13 @@ class CXF_Convert():
                     output_file.write ('      <AnaRxCTCFlag>'+str(AnaRxCTCFlag)+'</AnaRxCTCFlag>\n')
                     output_file.write ('      <AnaTxCTCIndex>'+str(AnaTxCTCIndex)+'</AnaTxCTCIndex>\n')
                     output_file.write ('      <AnaRxCTCIndex>'+str(AnaRxCTCIndex)+'</AnaRxCTCIndex>\n')
-                    output_file.write ('      <FreqStep>2</FreqStep>\n')
+                    output_file.write ('      <FreqStep>'+str(FreqStep)+'</FreqStep>\n')
                     output_file.write ('      <FreqReverseFlag>0</FreqReverseFlag>\n')
                     output_file.write ('      <EncryptFlag>0</EncryptFlag>\n')
                     output_file.write ('      <BusyNoTx>0</BusyNoTx>\n')
                     output_file.write ('      <PTTIdFlag>0</PTTIdFlag>\n')
                     output_file.write ('      <DTMFDecode>0</DTMFDecode>\n')
-                    output_file.write ('      <AMChanFlag>0</AMChanFlag>\n')
+                    output_file.write ('      <AMChanFlag>'+str(AMChanFlag)+'</AMChanFlag>\n')
                     output_file.write ('    </Channel>\n')
 
                 logger.info(f"Channel {chanIndex} {Name} converted")
