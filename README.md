@@ -1,4 +1,7 @@
 # chirp2cxf 1.0
+
+NOTE: The CHIRP unitlity now directly supports programming the Quansheng radios. This unility is no longer useful and I advise you to use CHIRP.
+
 A utility to convert from CHIRP CSV export files to the CXF file format used by the Quansheng UV-K5 radio CPS written in Python.
 
 ![CHIRP2CPX](docs/chirp2cxf.png)
